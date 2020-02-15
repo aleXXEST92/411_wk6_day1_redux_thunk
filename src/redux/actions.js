@@ -21,10 +21,17 @@ export const fetchMakes = () => {
         .then (response => {
             const action = {
                 type: 'FETCH_MAKES',
-                value: response.results
+                value: response.Results
             }
             dispatch(action)
         })
     }
-  
 }
+
+
+export const deleteMakes = (index) => {
+    return {
+        type: 'DELETE_MAKES',
+        value: index
+            }
+        }

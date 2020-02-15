@@ -18,10 +18,17 @@ const cars = (state = [], action) => {
 const makes = (state = [], action) => {
     switch(action.type) {
         case 'FETCH_MAKES' :
-        return [ ...state, action.value ]
+            return action.value
+        case 'DELETE_MAKES' :
+        const newState = [...state]
+        let findId = newState.find(x => x.MakeId === action.value);
+        let matchId= newState.indexOf(findId);
+        newState.splice(matchId, 1);
+        return newState;
         default:
             return state
     }
 }
+
 
 export default combineReducers({ user, cars, makes })

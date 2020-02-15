@@ -1,32 +1,32 @@
 import React from 'react'
-import { Button, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
-import { Container } from '@material-ui/core/Container'
+import { Button, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
 
 const Import = (props) => {
     // fill out this component
 console.log(props)
 
     return (
-        <div>
-        <Button onClick={props.fetchMakes} variant="contained" color="primary">Import</Button>
-    
+        <div className='table-container'>
+        <Button onClick={props.fetchMakes} variant="contained" color="primary">Import</Button>    
+        <h2>COUNT: {props.makes.length}</h2>
         <TableHead>
           <TableRow>
-            <TableCell align="right">Id</TableCell>
-            <TableCell align="right">Make</TableCell>
-            <TableCell align="right">Actions</TableCell>
+            <TableCell align="center">Id</TableCell>
+            <TableCell align="center">Make</TableCell>
+            <TableCell align="center">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody> 
-          {props.makes.map(make => (
-            <TableRow key={make}>
-              <TableCell align="right">{make.MakeId}</TableCell>
-              <TableCell align="right">{make.MakeName}</TableCell>
-              {/* <TableCell align="right">{make.}</TableCell> */}
-            </TableRow>
+          {props.makes.map(row => (
+            <TableRow key={row.MakeId}>
+            <TableCell>{row.MakeId}</TableCell>
+            <TableCell>{row.MakeName}</TableCell>
+        <TableCell>  
+        <Button onClick={() => props.deleteMakes(row.MakeId)} color="secondary">Delete</Button>
+        </TableCell>
+          </TableRow>
           ))}
         </TableBody>
-
         </div>
     )
 }
